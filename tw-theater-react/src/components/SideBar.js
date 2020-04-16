@@ -20,18 +20,19 @@ function SideBar() {
 
 function SortingSelect() {
   const {filter, updateFilter} = useContext(FilterContext);
+  const isSelected = filter.sorting;
   return (
     <ul id="sorting-options">
-      {["综合", "随机"].map(sorting => {
-          const isSelected = filter.sorting === sorting;
-          return (
-            <li className={isSelected ? "selected" : "unselected"}
-                onClick={() => updateFilter({sorting: sorting})}>
-              <span className={`iconfont icon-sort ${isSelected ? "selected-icon" : ""}`}/>
-              {sorting}
-            </li>);
-        }
-      )}
+      <li className={isSelected === "综合" ? "selected" : "unselected"}
+          onClick={() => updateFilter({sorting: "综合"})}>
+        <span className={`iconfont icon-sort ${isSelected === "综合" ? "selected-icon" : ""}`}/>
+        {"综合"}
+      </li>
+      <li className={isSelected === "随机" ? "selected" : "unselected"}
+          onClick={() => updateFilter({sorting: "随机"})}>
+        <span className={`iconfont icon-shuffle ${isSelected === "随机" ? "selected-icon" : ""}`}/>
+        {"随机"}
+      </li>
     </ul>
   );
 }
